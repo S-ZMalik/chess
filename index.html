@@ -494,6 +494,9 @@
     <div class="whiteLost"></div>
 
     <script>
+      const board = document.querySelector(".chess_container");
+      let isRotated = false;
+      
       document.querySelectorAll(".box").forEach((box) => {
         box.addEventListener("dragover", (e) => e.preventDefault());
         box.addEventListener("drop", (e) => {
@@ -535,6 +538,13 @@
           } else {
             box.appendChild(piece);
           }
+
+           isRotated = !isRotated;
+          board.style.transform = isRotated ? "rotate(180deg)" : "rotate(0deg)";
+
+          document.querySelectorAll(".box").forEach((bx) => {
+            bx.style.transform = isRotated ? "rotate(180deg)" : "rotate(0deg)";
+          });
         });
       });
 
